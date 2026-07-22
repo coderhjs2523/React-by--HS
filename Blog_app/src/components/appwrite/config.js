@@ -16,7 +16,7 @@ export class Service {
     }
 
     // Create Row
-    async createPost({ title, slug, content, featuredImage, status, userId }) {
+    async createPost({ title, slug, content, featureimage, status, userid }) {
         try {
             return await this.tablesDB.createRow({
                 databaseId: conf.appwriteDatabaseId,
@@ -25,9 +25,9 @@ export class Service {
                 data: {
                     title,
                     content,
-                    featuredImage,
+                    featureimage,
                     status,
-                    userId,
+                    userid,
                 },
             });
         } catch (error) {
@@ -36,7 +36,7 @@ export class Service {
     }
 
     // Update Row
-    async updatePost(slug, { title, content, featuredImage, status }) {
+    async updatePost(slug, { title, content, featureimage, status }) {
         try {
             return await this.tablesDB.updateRow({
                 databaseId: conf.appwriteDatabaseId,
@@ -45,7 +45,7 @@ export class Service {
                 data: {
                     title,
                     content,
-                    featuredImage,
+                    featureimage,
                     status,
                 },
             });
@@ -127,12 +127,12 @@ export class Service {
     }
 
     // File Preview
-    getFilePreview(fileId) {
-        return this.bucket.getFilePreview(
-            conf.appwriteBucketId,
-            fileId
-        );
-    }
+    getFileView(fileId) {
+    return this.bucket.getFileView(
+        conf.appwriteBucketId,
+        fileId
+    );
+}
 }
 
 const service = new Service();
